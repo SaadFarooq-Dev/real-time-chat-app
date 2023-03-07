@@ -9,7 +9,14 @@ const validateUserCreate = ([
   ).isLength({ min: 6, max: 100 }),
 ]
 )
+const validateLogin = (
+  [
+    check('email', 'Please include a valid email address').isEmail(),
+    check('password', 'Password is required!').exists(),
+   ]
+)
 
 module.exports = {
-  validateUserCreate
+  validateUserCreate,
+  validateLogin
 };
