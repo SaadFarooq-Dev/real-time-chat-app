@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken')
 // @access Private
 const getAllUsers = (async (req, res) => {
   // Get all users from MongoDB
-  const users = await User.find().select("-password").lean();
+  const users = await UserModel.find().select("-password").lean();
 
   // If no users
   if (!users?.length) {
@@ -27,16 +27,16 @@ const getUser = (async (req, res) => {
   const { username } = req.params;
 
   // Get users from MongoDB
-  const users = await User.find({ username }).select("-password").lean().exec();
+  const user = await UserModel.find({ username }).select("-password").lean().exec();
 
   // If no users
-  if (!users?.length) {
+  if (!user?.length) {
     return res
       .status(400)
       .json({ message: `No user with the username ${username} found` });
   }
 
-  res.json(users);
+  res.json(user);
 });
 
 // @desc Create new user
