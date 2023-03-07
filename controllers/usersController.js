@@ -41,7 +41,7 @@ const getUser = (async (req, res) => {
 
 // @desc Create new user
 // @route POST /users
-// @access Private
+// @access public
 const createUser =   async (req, res) => {
   const errors = validationResult(req)
 
