@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Home = ({socket}) => {
+const Home = ({socket,isLogin}) => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState('');
 
@@ -12,6 +12,13 @@ const Home = ({socket}) => {
     socket.emit('newUser', { userName, socketID: socket.id });
     navigate('/chat');
   };
+
+  useEffect(() => {
+    if(!isLogin){
+      navigate('/login')
+    }
+  }, [isLogin]);
+
   return (
     <form className="home__container" onSubmit={handleSubmit}>
       <h2 className="home__header">Sign in to Open Chat</h2>

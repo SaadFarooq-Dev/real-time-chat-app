@@ -9,8 +9,7 @@ const io = require('socket.io')(http, {
   }
 });
 const connectDB = require('./config/db')
-
-
+const socketManager = require('./listeners/socketManager')
 
 const corsOptions = {
   origin: '*',
@@ -24,28 +23,10 @@ connectDB()
 // init Middlewares
 app.use(express.json({ extended: false }))
 app.use(cors(corsOptions)) // Use this after the variable declaration
-let users = [];
 
-io.on('connection', (socket) => {
-  console.log(`⚡: ${socket.id} user just connected!`);
-  socket.on('message', (data) => {
-    io.emit('messageResponse', data);
-  });
+//handle socket
+socketManager(io)
 
-  socket.on('typing', (data) => socket.broadcast.emit('typingResponse', data));
-
-  socket.on('newUser', (data) => {
-    users.push(data);
-    io.emit('newUserResponse', users);
-  });
-
-  socket.on('disconnect', () => {
-    console.log('🔥: A user disconnected');
-    users = users.filter((user) => user.socketID !== socket.id);
-    io.emit('newUserResponse', users);
-    socket.disconnect();
-  });
-});
 app.get('/', (req, res) => {
   res.send('Api Running')
 })
