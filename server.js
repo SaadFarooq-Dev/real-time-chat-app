@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const http = require('http').Server(app)
@@ -8,8 +8,8 @@ const io = require('socket.io')(http, {
       origin: "http://localhost:5500"
   }
 });
+const connectDB = require('./config/db')
 
-// const connectDB = require('./config/db')
 
 
 const corsOptions = {
@@ -19,7 +19,7 @@ const corsOptions = {
 }
 
 // Connect to database
-// connectDB()
+connectDB()
 
 // init Middlewares
 app.use(express.json({ extended: false }))
