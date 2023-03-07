@@ -1,13 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ChatBody = ({ messages, lastMessageRef,typingStatus }) => {
+const ChatBody = ({ messages, lastMessageRef,typingStatus, socket }) => {
   const navigate = useNavigate();
 
   const handleLeaveChat = () => {
     localStorage.removeItem('userName');
-    navigate('/');
-    window.location.reload();
+    localStorage.removeItem('jwtToken');
+    socket.close()
+    window.location.reload()
   };
 
   return (

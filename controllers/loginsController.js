@@ -42,7 +42,9 @@ const loginUser = async (req, res) => {
    }
    const payload = {
     user: {
-     id: user.id,
+      id: user.id,
+      username: user.username,
+      email: user.email
     },
    };
 
@@ -52,7 +54,7 @@ const loginUser = async (req, res) => {
     { expiresIn: 3600 },
     async (err, token) => {
      if (err) throw err;
-     res.json({ token, user });
+     res.json({ token });
     }
    );
   } catch (error) {

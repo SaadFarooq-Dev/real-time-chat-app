@@ -43,10 +43,10 @@
 }
 .chat__sidebar {
   height: 100%;
-  background-color: #f9f5eb;
+  background-color: #161615;
   flex: 0.2;
   padding: 20px;
-  border-right: 1px solid #fdfdfd;
+  border-right: 1px solid #ffffff;
 }
 .chat__main {
   height: 100%;
@@ -72,7 +72,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: #f9f5eb;
+  background-color: #161615;
 }
 .leaveChat__btn {
   padding: 10px;
@@ -86,7 +86,7 @@
 .message__container {
   width: 100%;
   height: 80vh;
-  background-color: #fff;
+  background-color: #161615;
   padding: 20px;
   overflow-y: scroll;
 }
@@ -95,13 +95,14 @@
   margin-bottom: 10px;
 }
 .chat__footer {
-  padding: 10px;
-  background-color: #f9f5eb;
+  padding: 15px;
+  background-color: #161615;
   height: 10vh;
 }
 .form {
   width: 100%;
   height: 100%;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -149,6 +150,8 @@
 }
 .message__status {
   position: fixed;
+  color: white;
+  padding: 10px;
   bottom: 50px;
   font-size: 13px;
   font-style: italic;
